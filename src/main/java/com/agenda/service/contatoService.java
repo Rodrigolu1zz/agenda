@@ -24,14 +24,14 @@ public class contatoService {
             throw new IllegalArgumentException("O nome do contato não pode ser vazio.");
         }
         // Regra para não permitir dois contatos com o mesmo nome (Pode ser desabilitado)            
-        if (contato.getId() == null && !repository.findByNome(contato.getNome()).isEmpty()) {
+        if (contato.getId() == null && !repository.findByNomeContainingIgnoreCase(contato.getNome()).isEmpty()) {
             throw new IllegalArgumentException("Já existe um contato cadastrado com este nome.");
         }
         return repository.save(contato);
     }
 
     public List<contato> buscarPorNome(String nome) {
-        return repository.findByNome(nome);
+        return repository.findByNomeContainingIgnoreCase(nome);
     }
 
     public contato buscarPorId(Long id) {

@@ -10,5 +10,5 @@ import com.agenda.model.contato;
 @Repository
 public interface contatoRepository extends JpaRepository<contato, Long> {
     
-    List<contato> findByNome(String nome);
+    List<contato> findByNomeContainingIgnoreCase(String nome);
 }
